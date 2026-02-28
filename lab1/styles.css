@@ -62,3 +62,31 @@ img {
     display: block;
     margin: 20px auto;
 }
+
+
+
+
+
+
+/* Адаптація для планшетів (до 768px) */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column; /* Меню стає вертикальним */
+        align-items: center;
+    }
+    
+    nav ul li {
+        margin: 10px 0;
+    }
+}
+
+/* Адаптація для телефонів (до 480px) */
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 24px; /* Зменшуємо заголовок */
+    }
+    
+    .job-card {
+        padding: 15px;
+    }
+}
