@@ -1,3 +1,4 @@
+/* Змінні для кольорів */
 :root {
     --bg-color: #f0f2f5;
     --text-color: #333;
@@ -8,6 +9,7 @@
     --footer-bg: #2c3e50;
 }
 
+/* Кольори для темної теми */
 .dark-theme {
     --bg-color: #121212;
     --text-color: #e0e0e0;
@@ -25,7 +27,7 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.3s, color 0.3s; /* Для плавності */
 }
 
 header {
@@ -44,7 +46,9 @@ nav ul {
     margin-bottom: 10px;
 }
 
-nav ul li { margin: 0 15px; }
+nav ul li {
+    margin: 0 15px;
+}
 
 nav ul li a {
     color: var(--nav-link);
@@ -64,13 +68,17 @@ nav ul li a {
     transition: 0.3s;
 }
 
+.theme-btn:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
 main {
     max-width: 1200px;
     margin: 20px auto;
     padding: 20px;
 }
 
-/* СІТКА ГРІД ВАКАНСІЙ */
 .jobs-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -84,13 +92,7 @@ main {
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     border-top: 5px solid var(--accent-color);
-}
-
-#search, #profile {
-    margin-top: 40px;
-    padding: 20px;
-    background: var(--card-bg);
-    border-radius: 12px;
+    transition: background-color 0.3s;
 }
 
 footer {
@@ -103,5 +105,8 @@ footer {
 
 /* АДАПТИВНІСТЬ */
 @media (max-width: 768px) {
-    nav ul { flex-direction: column; align-items: center; }
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
 }
