@@ -1,4 +1,4 @@
-/* Налаштування кольорів через змінні */
+/* Змінні для кольорів */
 :root {
     --bg-color: #f0f2f5;
     --text-color: #333;
@@ -27,7 +27,7 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.3s, color 0.3s; /* Для плавності */
 }
 
 header {
@@ -56,20 +56,21 @@ nav ul li a {
     font-weight: bold;
 }
 
-/* Кнопка перемикача */
 .theme-btn {
     background-color: var(--accent-color);
     color: white;
     border: none;
-    padding: 8px 16px;
-    border-radius: 20px;
+    padding: 10px 20px;
+    border-radius: 25px;
     cursor: pointer;
     font-weight: bold;
-    transition: transform 0.2s;
+    margin-top: 10px;
+    transition: 0.3s;
 }
 
 .theme-btn:hover {
     transform: scale(1.05);
+    opacity: 0.9;
 }
 
 main {
@@ -78,7 +79,6 @@ main {
     padding: 20px;
 }
 
-/* СІТКА ГРІД */
 .jobs-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -92,6 +92,7 @@ main {
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     border-top: 5px solid var(--accent-color);
+    transition: background-color 0.3s;
 }
 
 footer {
