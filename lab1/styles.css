@@ -1,17 +1,20 @@
-/* Основні стилі */
+/* Загальні стилі */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #f0f2f5;
+    color: #333;
     line-height: 1.6;
 }
 
+/* Заголовок та Навігація */
 header {
-    background-color: #333;
+    background-color: #2c3e50;
     color: white;
-    padding: 20px;
+    padding: 1.5rem;
     text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 nav ul {
@@ -19,74 +22,97 @@ nav ul {
     padding: 0;
     display: flex;
     justify-content: center;
+    margin-top: 15px;
 }
 
 nav ul li {
-    margin: 0 15px;
+    margin: 0 20px;
 }
 
 nav ul li a {
-    color: white;
+    color: #ecf0f1;
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.3s;
 }
 
-/* Налаштування CSS Grid для вакансій */
+nav ul li a:hover {
+    color: #3498db; /* Ефект наведення [cite: 225, 228] */
+}
+
+/* Основний контент */
+main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+h2, h3 {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+
+/* СІТКА ГРІД ДЛЯ ВАКАНСІЙ  */
 .jobs-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
 }
 
 .job-card {
     background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    border-left: 5px solid #007bff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-top: 5px solid #3498db;
+    transition: transform 0.2s;
 }
 
+.job-card:hover {
+    transform: translateY(-5px);
+}
+
+.job-card h3 {
+    margin-top: 0;
+    border: none;
+}
+
+/* Футер */
 footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #333;
+    background-color: #2c3e50;
     color: white;
-    margin-top: 20px;
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 60px;
 }
 
-/* Адаптивне зображення */
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 20px auto;
+footer p {
+    margin: 8px 0;
 }
 
+/* АДАПТИВНІСТЬ (Media Queries) [cite: 55, 178, 191] */
 
-
-
-
-
-/* Адаптація для планшетів (до 768px) */
+/* Для планшетів */
 @media (max-width: 768px) {
     nav ul {
-        flex-direction: column; /* Меню стає вертикальним */
+        flex-direction: column;
         align-items: center;
     }
     
     nav ul li {
-        margin: 10px 0;
+        margin: 8px 0;
     }
 }
 
-/* Адаптація для телефонів (до 480px) */
+/* Для телефонів */
 @media (max-width: 480px) {
     header h1 {
-        font-size: 24px; /* Зменшуємо заголовок */
+        font-size: 22px;
     }
     
-    .job-card {
-        padding: 15px;
+    .jobs-container {
+        grid-template-columns: 1fr; /* Одна колонка на вузьких екранах */
     }
 }
