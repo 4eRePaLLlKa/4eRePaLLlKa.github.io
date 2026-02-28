@@ -1,11 +1,11 @@
-/* Кольорові змінні */
 :root {
     --bg-color: #f0f2f5;
     --text-color: #333;
     --card-bg: #ffffff;
     --header-bg: #2c3e50;
     --nav-link: #ecf0f1;
-    --accent-color: #3498db;
+    --accent-color: #3498db; /* Основний синій */
+    --hover-color: #e67e22;  /* Колір при наведенні (помаранчевий) */
     --footer-bg: #2c3e50;
 }
 
@@ -15,7 +15,8 @@
     --card-bg: #1e1e1e;
     --header-bg: #000000;
     --nav-link: #bb86fc;
-    --accent-color: #bb86fc;
+    --accent-color: #bb86fc; /* Фіолетовий */
+    --hover-color: #03dac6;  /* Колір при наведенні (бірюзовий) */
     --footer-bg: #1a1a1a;
 }
 
@@ -26,7 +27,7 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
-    transition: 0.3s;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 header {
@@ -45,7 +46,18 @@ nav ul {
 }
 
 nav ul li { margin: 0 15px; }
-nav ul li a { color: var(--nav-link); text-decoration: none; font-weight: bold; }
+
+/* ЕФЕКТ НАВЕДЕННЯ ДЛЯ МЕНЮ */
+nav ul li a {
+    color: var(--nav-link);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease; /* Плавна зміна кольору */
+}
+
+nav ul li a:hover {
+    color: var(--hover-color); /* Зміна кольору тексту при наведенні */
+}
 
 .theme-btn {
     background-color: var(--accent-color);
@@ -56,6 +68,12 @@ nav ul li a { color: var(--nav-link); text-decoration: none; font-weight: bold; 
     cursor: pointer;
     font-weight: bold;
     margin-top: 10px;
+    transition: 0.3s ease;
+}
+
+.theme-btn:hover {
+    background-color: var(--hover-color);
+    transform: scale(1.05);
 }
 
 main {
@@ -64,7 +82,6 @@ main {
     padding: 20px;
 }
 
-/* СІТКА ГРІД ДЛЯ ВАКАНСІЙ  */
 .jobs-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -72,15 +89,22 @@ main {
     margin-top: 20px;
 }
 
+/* ЕФЕКТ НАВЕДЕННЯ ДЛЯ КАРТОК */
 .job-card {
     background: var(--card-bg);
     padding: 25px;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     border-top: 5px solid var(--accent-color);
+    transition: all 0.3s ease; /* Плавність для всіх змін */
 }
 
-/* СТИЛІ ПРОФІЛЮ (FLEXBOX)  */
+.job-card:hover {
+    border-top-color: var(--hover-color); /* Зміна кольору смужки */
+    transform: translateY(-8px); /* Легке підняття картки вгору */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2); /* Посилення тіні */
+}
+
 .profile-container {
     display: flex;
     align-items: center;
@@ -95,12 +119,16 @@ main {
 .profile-pic {
     width: 150px;
     height: 150px;
-    border-radius: 50%; /* Кругле фото */
+    border-radius: 50%;
     object-fit: cover;
     border: 4px solid var(--accent-color);
+    transition: border-color 0.3s ease;
 }
 
-.profile-info h3 { margin-top: 0; }
+/* Фото також реагує на наведення */
+.profile-container:hover .profile-pic {
+    border-color: var(--hover-color);
+}
 
 footer {
     background-color: var(--footer-bg);
@@ -110,11 +138,7 @@ footer {
     margin-top: 60px;
 }
 
-/* АДАПТИВНІСТЬ  */
 @media (max-width: 768px) {
-    nav ul { flex-direction: column; align-items: center; } /* [cite: 254] */
-    .profile-container {
-        flex-direction: column; /* Фото над текстом на мобільних [cite: 255] */
-        text-align: center;
-    }
+    nav ul { flex-direction: column; align-items: center; }
+    .profile-container { flex-direction: column; text-align: center; }
 }
