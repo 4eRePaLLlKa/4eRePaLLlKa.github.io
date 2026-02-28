@@ -1,4 +1,4 @@
-/* Змінні для кольорів */
+/* Кольорові змінні */
 :root {
     --bg-color: #f0f2f5;
     --text-color: #333;
@@ -9,7 +9,6 @@
     --footer-bg: #2c3e50;
 }
 
-/* Кольори для темної теми */
 .dark-theme {
     --bg-color: #121212;
     --text-color: #e0e0e0;
@@ -27,7 +26,7 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
-    transition: background-color 0.3s, color 0.3s; /* Для плавності */
+    transition: 0.3s;
 }
 
 header {
@@ -35,7 +34,6 @@ header {
     color: white;
     padding: 1.5rem;
     text-align: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
 nav ul {
@@ -46,15 +44,8 @@ nav ul {
     margin-bottom: 10px;
 }
 
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: var(--nav-link);
-    text-decoration: none;
-    font-weight: bold;
-}
+nav ul li { margin: 0 15px; }
+nav ul li a { color: var(--nav-link); text-decoration: none; font-weight: bold; }
 
 .theme-btn {
     background-color: var(--accent-color);
@@ -65,12 +56,6 @@ nav ul li a {
     cursor: pointer;
     font-weight: bold;
     margin-top: 10px;
-    transition: 0.3s;
-}
-
-.theme-btn:hover {
-    transform: scale(1.05);
-    opacity: 0.9;
 }
 
 main {
@@ -79,6 +64,7 @@ main {
     padding: 20px;
 }
 
+/* СІТКА ГРІД ДЛЯ ВАКАНСІЙ  */
 .jobs-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -92,8 +78,29 @@ main {
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     border-top: 5px solid var(--accent-color);
-    transition: background-color 0.3s;
 }
+
+/* СТИЛІ ПРОФІЛЮ (FLEXBOX)  */
+.profile-container {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+    margin-top: 40px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Кругле фото */
+    object-fit: cover;
+    border: 4px solid var(--accent-color);
+}
+
+.profile-info h3 { margin-top: 0; }
 
 footer {
     background-color: var(--footer-bg);
@@ -103,10 +110,11 @@ footer {
     margin-top: 60px;
 }
 
-/* АДАПТИВНІСТЬ */
+/* АДАПТИВНІСТЬ  */
 @media (max-width: 768px) {
-    nav ul {
-        flex-direction: column;
-        align-items: center;
+    nav ul { flex-direction: column; align-items: center; } /* [cite: 254] */
+    .profile-container {
+        flex-direction: column; /* Фото над текстом на мобільних [cite: 255] */
+        text-align: center;
     }
 }
