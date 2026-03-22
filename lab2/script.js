@@ -1,4 +1,4 @@
-// --- 1. ЛОГІКА ТЕМНОЇ ТЕМИ ---
+// --- 1. ТЕМА ---
 const themeBtn = document.getElementById('theme-toggle');
 if (themeBtn) {
     themeBtn.addEventListener('click', () => {
@@ -8,7 +8,7 @@ if (themeBtn) {
     if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark-theme');
 }
 
-// --- 2. БАЗА ВАКАНСІЙ (Додано числове значення зарплати для фільтру) ---
+// --- 2. ДАНІ ВАКАНСІЙ ---
 const vacancies = [
     { title: "Frontend Developer", company: "WebTech Solutions", requirements: "HTML5, CSS3, React, Git", salaryStr: "65 000", salaryVal: 65000, category: "IT", city: "Київ" },
     { title: "Java Backend Engineer", company: "FinCore Systems", requirements: "Java 17, Spring Boot, PostgreSQL", salaryStr: "80 000", salaryVal: 80000, category: "IT", city: "Львів" },
@@ -16,7 +16,7 @@ const vacancies = [
     { title: "Social Media Manager", company: "PromoGroup", requirements: "SMM, Копірайтинг, Таргет", salaryStr: "30 000", salaryVal: 30000, category: "Marketing", city: "Одеса" },
     { title: "UI/UX Designer", company: "Creative Flow", requirements: "Figma, Adobe XD, Прототипування", salaryStr: "45 000", salaryVal: 45000, category: "Design", city: "Київ" },
     { title: "Project Manager", company: "Global Deliver", requirements: "Agile, Scrum, English C1", salaryStr: "60 000", salaryVal: 60000, category: "IT", city: "Львів" },
-    { title: "SEO Chuyên gia", company: "TopRank", requirements: "Google Analytics, Ahrefs, Оптимізація", salaryStr: "35 000", salaryVal: 35000, category: "Marketing", city: "Дистанційно" },
+    { title: "SEO Спеціаліст", company: "TopRank", requirements: "Google Analytics, Ahrefs, Оптимізація", salaryStr: "35 000", salaryVal: 35000, category: "Marketing", city: "Дистанційно" },
     { title: "QA Automation (C++)", company: "Unreal Games Lab", requirements: "C++, GTest, Розуміння ООП", salaryStr: "55 000", salaryVal: 55000, category: "IT", city: "Київ" },
     { title: "HR Generalist", company: "People First", requirements: "Рекрутинг, Онбординг, Комунікабельність", salaryStr: "32 000", salaryVal: 32000, category: "Marketing", city: "Дистанційно" },
     { title: "Graphic Designer", company: "ArtSpace", requirements: "Photoshop, Illustrator, Креативність", salaryStr: "28 000", salaryVal: 28000, category: "Design", city: "Львів" }
@@ -24,7 +24,7 @@ const vacancies = [
 
 const container = document.getElementById('jobsContainer');
 
-// --- 3. ГЕНЕРАЦІЯ ВАКАНСІЙ ЧЕРЕЗ ЦИКЛ FOR ---
+// --- 3. ГЕНЕРАЦІЯ КАРТОК ---
 function displayJobs(jobsArray) {
     container.innerHTML = ''; 
 
@@ -50,7 +50,7 @@ function displayJobs(jobsArray) {
     }
 }
 
-// --- 4. TOAST СПОВІЩЕННЯ (Замість alert) ---
+// --- 4. TOAST СПОВІЩЕННЯ ---
 function showToast(message) {
     const toast = document.getElementById('toast');
     toast.textContent = message;
@@ -58,7 +58,7 @@ function showToast(message) {
     
     setTimeout(() => {
         toast.classList.remove('show');
-    }, 3000); // Зникає через 3 секунди
+    }, 3000); 
 }
 
 // --- 5. ОБРОБКА ПОДАЧІ ЗАЯВКИ ---
@@ -69,12 +69,11 @@ function applyToJob(button, jobTitle) {
         card.classList.add('applied');
         button.textContent = 'Подано ✓';
         button.disabled = true; 
-        
         showToast(`Ви успішно подалися на: ${jobTitle}!`);
     }
 }
 
-// --- 6. КОМПЛЕКСНА ФІЛЬТРАЦІЯ (Категорія, Місто, Зарплата) ---
+// --- 6. ФІЛЬТРАЦІЯ ---
 const catFilter = document.getElementById('categoryFilter');
 const cityFilter = document.getElementById('cityFilter');
 const salFilter = document.getElementById('salaryFilter');
@@ -89,19 +88,16 @@ function filterJobs() {
         const matchCategory = catVal === 'all' || job.category === catVal;
         const matchCity = cityVal === 'all' || job.city === cityVal;
         const matchSalary = salVal === 'all' || job.salaryVal >= parseInt(salVal);
-
         return matchCategory && matchCity && matchSalary;
     });
 
     displayJobs(filtered);
 }
 
-// Слухаємо зміни у всіх списках
 catFilter.addEventListener('change', filterJobs);
 cityFilter.addEventListener('change', filterJobs);
 salFilter.addEventListener('change', filterJobs);
 
-// Скидання
 resetBtn.addEventListener('click', () => {
     catFilter.value = 'all'; 
     cityFilter.value = 'all'; 
@@ -109,5 +105,20 @@ resetBtn.addEventListener('click', () => {
     displayJobs(vacancies);     
 });
 
-// Перший запуск
+// --- 7. КНОПКА "ВГОРУ" ---
+const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+window.addEventListener("scroll", () => {
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        scrollTopBtn.classList.add("show");
+    } else {
+        scrollTopBtn.classList.remove("show");
+    }
+});
+
+scrollTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+// Запуск
 displayJobs(vacancies);
