@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobFinder — Лабораторна №2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>JobFinder Pro</h1>
+        <div class="filter-section">
+            <select id="categoryFilter">
+                <option value="all">Всі категорії</option>
+                <option value="IT">IT</option>
+                <option value="Marketing">Маркетинг</option>
+                <option value="Design">Дизайн</option>
+            </select>
+            <button id="resetFilters" class="btn">Скинути фільтри</button>
+        </div>
+    </header>
+
+    <main>
+        <section id="jobs">
+            <h2>Список вакансій</h2>
+            <div id="jobsContainer" class="jobs-container"></div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
