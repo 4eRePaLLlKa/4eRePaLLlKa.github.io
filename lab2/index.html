@@ -29,7 +29,23 @@
                     <option value="Marketing">Маркетинг</option>
                     <option value="Design">Дизайн</option>
                 </select>
-                <button id="resetFilters" class="theme-btn">Скинути фільтри</button>
+                
+                <select id="cityFilter" class="theme-input">
+                    <option value="all">Всі міста</option>
+                    <option value="Київ">Київ</option>
+                    <option value="Львів">Львів</option>
+                    <option value="Одеса">Одеса</option>
+                    <option value="Дистанційно">Дистанційно</option>
+                </select>
+
+                <select id="salaryFilter" class="theme-input">
+                    <option value="all">Будь-яка зарплата</option>
+                    <option value="30000">Від 30 000 грн</option>
+                    <option value="50000">Від 50 000 грн</option>
+                    <option value="70000">Від 70 000 грн</option>
+                </select>
+
+                <button id="resetFilters" class="theme-btn">Скинути</button>
             </div>
         </section>
 
@@ -57,6 +73,8 @@
         <p>Адреса: м. Київ, вул. Технологічна, 101 </p>
         <p>© 2026 JobFinder Platform — Твій шлях до успіху </p>
     </footer>
+
+    <div id="toast" class="toast"></div>
 
     <script src="script.js"></script>
 </body>
