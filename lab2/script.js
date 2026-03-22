@@ -105,20 +105,50 @@ resetBtn.addEventListener('click', () => {
     displayJobs(vacancies);     
 });
 
-// --- 7. КНОПКА "ВГОРУ" ---
+// --- 7. КНОПКА "ВГОРУ" (ОНОВЛЕНО ЛОГІКУ) ---
 const scrollTopBtn = document.getElementById("scrollTopBtn");
+const footer = document.querySelector('footer');
 
-window.addEventListener("scroll", () => {
-    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-        scrollTopBtn.classList.add("show");
+// Налаштування позиціонування
+const standardFixedBottom = 80; // Відступ знизу, коли кнопка "плаває" над контентом
+const gapAboveFooter = 20;     // Мінімальний зазор між кнопкою та початком футера
+
+function handleScrollEffects() {
+    const scrollPos = window.scrollY || document.documentElement.scrollTop;
+    const windowHeight = window.innerHeight;
+    const footerRect = footer.getBoundingClientRect(); // Вимірюємо положення футера відносно вікна
+
+    // 7а. Поява кнопки при прокручуванні вниз (поріг 300px)
+    if (scrollPos > 300) {
+        scrollTopBtn.classList.add('show');
     } else {
-        scrollTopBtn.classList.remove("show");
+        scrollTopBtn.classList.remove('show');
     }
-});
 
+    // 7б. Динамічне позиціонування над Футером
+    // footerRect.top — це відстань від верхньої межі вікна до початку футера.
+    // Якщо ця відстань менша за висоту вікна, значить футер вже з'явився знизу.
+    if (footerRect.top < windowHeight) {
+        // Футер ВИДИМИЙ у вікні.
+        const visibleFooterHeight = windowHeight - footerRect.top;
+        // Розраховуємо новий bottom: видима частина футера + зазор
+        scrollTopBtn.style.bottom = (visibleFooterHeight + gapAboveFooter) + 'px';
+    } else {
+        // Футер ще не з'явився (або занадто далеко). Стандартна позиція.
+        scrollTopBtn.style.bottom = standardFixedBottom + 'px';
+    }
+}
+
+// Слухаємо подію скролу
+window.addEventListener('scroll', handleScrollEffects);
+
+// Перший запуск (на випадок завантаження сторінки вже прокрученою)
+handleScrollEffects();
+
+// Плавний скрол нагору при кліку
 scrollTopBtn.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-// Запуск
+// Запуск при завантаженні
 displayJobs(vacancies);

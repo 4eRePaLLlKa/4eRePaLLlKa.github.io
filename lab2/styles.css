@@ -204,10 +204,10 @@ footer {
     bottom: 20px; 
 }
 
-/* Кнопка Вгору */
+/* Кнопка Вгору (оновлено) */
 .scroll-top-btn {
     position: fixed;
-    bottom: 80px; 
+    /* bottom: тепер контролюється JavaScript */
     right: 20px;
     background-color: var(--accent-color);
     color: white;
@@ -219,7 +219,8 @@ footer {
     font-weight: bold;
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    transition: 0.3s;
+    /* Прибрано анімацію bottom, залишено лише прозорість */
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease; 
     opacity: 0; 
     visibility: hidden; 
     z-index: 999;
