@@ -4,28 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JobFinder — Лабораторна №2</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>JobFinder Pro</h1>
-        <div class="filter-section">
-            <select id="categoryFilter">
-                <option value="all">Всі категорії</option>
-                <option value="IT">IT</option>
-                <option value="Marketing">Маркетинг</option>
-                <option value="Design">Дизайн</option>
-            </select>
-            <button id="resetFilters" class="btn">Скинути фільтри</button>
-        </div>
+        <h1>JobFinder</h1>
+        <nav>
+            <ul>
+                <li><a href="#search">Пошук роботи</a></li>
+                <li><a href="#jobs">Вакансії</a></li>
+                <li><a href="#profile">Мій профіль</a></li>
+            </ul>
+        </nav>
+        <button id="theme-toggle" class="theme-btn">Змінити тему</button>
     </header>
 
     <main>
+        <section id="search">
+            <h2>Пошук та фільтри</h2>
+            <div class="filter-section">
+                <select id="categoryFilter" class="theme-input">
+                    <option value="all">Всі категорії</option>
+                    <option value="IT">IT</option>
+                    <option value="Marketing">Маркетинг</option>
+                    <option value="Design">Дизайн</option>
+                </select>
+                <button id="resetFilters" class="theme-btn">Скинути фільтри</button>
+            </div>
+        </section>
+
         <section id="jobs">
-            <h2>Список вакансій</h2>
-            <div id="jobsContainer" class="jobs-container"></div>
+            <h2>Доступні вакансії</h2>
+            <div id="jobsContainer" class="jobs-container">
+                </div>
+        </section>
+
+        <section id="profile">
+            <div class="profile-container">
+                <img src="https://st2.depositphotos.com/1594920/8612/i/450/depositphotos_86121648-stock-photo-close-up-of-mixed-breed.jpg" alt="Фото Максима" class="profile-pic">
+                <div class="profile-info">
+                    <h3>Мій профіль</h3>
+                    <p><strong>Ім'я:</strong> Коваль Максим Миколайович </p>
+                    <p><strong>Навички:</strong> Java, C++, Python, Git, HTML/CSS. </p>
+                    <p><strong>Досвід:</strong> 2 роки розробки ігрових проектів та десктопних додатків. Відповідальний за розробку клієнтської частини у проекті карткової гри.</p>
+                </div>
+            </div>
         </section>
     </main>
+
+    <footer>
+        <p>Контакти: info@jobfinder.ua | тел: +380 44 555 66 77 </p>
+        <p>Адреса: м. Київ, вул. Технологічна, 101 </p>
+        <p>© 2026 JobFinder Platform — Твій шлях до успіху </p>
+    </footer>
 
     <script src="script.js"></script>
 </body>

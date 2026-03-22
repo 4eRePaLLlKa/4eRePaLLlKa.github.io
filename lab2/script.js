@@ -1,65 +1,77 @@
-// 1. Масив вакансій (Дані з "бази") [cite: 387]
+// --- 1. ЛОГІКА ТЕМНОЇ ТЕМИ (з 1 лаби) ---
+const themeBtn = document.getElementById('theme-toggle');
+themeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-theme');
+    localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
+});
+if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark-theme');
+
+
+// --- 2. ДАНІ ВАКАНСІЙ (Завдання 1) ---
 const vacancies = [
-    { id: 1, title: "Frontend Developer", category: "IT", city: "Київ", salary: "55 000" },
-    { id: 2, title: "Java Engineer", category: "IT", city: "Львів", salary: "70 000" },
-    { id: 3, title: "Social Media Manager", category: "Marketing", city: "Одеса", salary: "30 000" },
-    { id: 4, title: "UI/UX Designer", category: "Design", city: "Дистанційно", salary: "45 000" }
+    { title: "Frontend Developer", company: "WebTech Solutions", requirements: "HTML5, CSS3, JavaScript, Git", salary: "55 000", category: "IT" },
+    { title: "Java Backend Engineer", company: "FinCore Systems", requirements: "Java 17, Spring Boot, PostgreSQL", salary: "70 000", category: "IT" },
+    { title: "Python Data Analyst", company: "DataMind", requirements: "Python, Pandas, SQL", salary: "48 000", category: "IT" },
+    { title: "Social Media Manager", company: "PromoGroup", requirements: "SMM, Копірайтинг, Таргет", salary: "30 000", category: "Marketing" },
+    { title: "UI/UX Designer", company: "Creative Flow", requirements: "Figma, Adobe XD, Прототипування", salary: "45 000", category: "Design" },
+    { title: "Project Manager", company: "Global Deliver", requirements: "Agile, Scrum, English C1", salary: "60 000", category: "IT" }
 ];
 
 const container = document.getElementById('jobsContainer');
 
-// 2. Функція для виводу вакансій (Завдання 1: використання циклу for) [cite: 259, 282]
-function displayJobs(data) {
-    container.innerHTML = ''; // Очищуємо контейнер перед виводом [cite: 88]
+// --- 3. ФУНКЦІЯ ГЕНЕРАЦІЇ КАРТОК ЧЕРЕЗ ЦИКЛ (Завдання 1) ---
+function displayJobs(jobsArray) {
+    container.innerHTML = ''; // Очищаємо перед новим малюванням
 
-    for (let i = 0; i < data.length; i++) {
-        const job = data[i];
+    for (let i = 0; i < jobsArray.length; i++) {
+        const job = jobsArray[i];
         
-        // Створюємо елемент картки [cite: 107]
-        const card = document.createElement('div');
-        card.className = 'job-card';
-        card.innerHTML = `
+        // Створюємо картку (таку ж, як була в HTML 1 лаби)
+        const article = document.createElement('article');
+        article.className = 'job-card';
+        article.innerHTML = `
             <h3>${job.title}</h3>
-            <p><strong>Категорія:</strong> ${job.category}</p>
-            <p><strong>Місто:</strong> ${job.city}</p>
-            <p><strong>Зарплата:</strong> ${job.salary} грн</p>
+            <p><strong>Компанія:</strong> ${job.company} </p>
+            <p><strong>Вимоги:</strong> ${job.requirements} </p>
+            <p><strong>Зарплата:</strong> ${job.salary} грн. </p>
             <button class="apply-btn" onclick="applyToJob(this)">Подати заявку</button>
         `;
-        container.appendChild(card); // Додаємо в DOM [cite: 108]
+        container.appendChild(article);
     }
 }
 
-// 3. Функція подачі заявки (Завдання 2: обробка подій та умови) [cite: 266, 289]
+// --- 4. ОБРОБКА КЛІКУ ПО КНОПЦІ (Завдання 2) ---
 function applyToJob(button) {
     const card = button.parentElement;
     
-    // Умовна логіка if-else (Завдання 2) [cite: 270]
+    // Перевіряємо умову if-else
     if (!card.classList.contains('applied')) {
         card.classList.add('applied');
         button.textContent = 'Подано ✓';
-        button.disabled = true;
-        alert('Ви успішно подали заявку на вакансію!'); // Повідомлення про успіх [cite: 388]
+        button.disabled = true; // Вимикаємо кнопку
+        alert('Заявку успішно надіслано!');
     }
 }
 
-// 4. Фільтрація (Завдання 3) [cite: 389]
-document.getElementById('categoryFilter').addEventListener('change', (e) => {
-    const selected = e.target.value;
+// --- 5. ФІЛЬТРАЦІЯ (Завдання 3) ---
+const filterSelect = document.getElementById('categoryFilter');
+const resetBtn = document.getElementById('resetFilters');
+
+filterSelect.addEventListener('change', (event) => {
+    const selectedCategory = event.target.value;
     
-    if (selected === 'all') {
-        displayJobs(vacancies);
+    if (selectedCategory === 'all') {
+        displayJobs(vacancies); // Показуємо всі
     } else {
-        // Фільтруємо масив
-        const filtered = vacancies.filter(job => job.category === selected);
-        displayJobs(filtered);
+        const filtered = vacancies.filter(job => job.category === selectedCategory);
+        displayJobs(filtered); // Показуємо відфільтровані
     }
 });
 
-// Скидання фільтрів
-document.getElementById('resetFilters').onclick = () => {
-    document.getElementById('categoryFilter').value = 'all';
-    displayJobs(vacancies);
-};
+resetBtn.addEventListener('click', () => {
+    filterSelect.value = 'all'; // Скидаємо селект
+    displayJobs(vacancies);     // Малюємо всі вакансії
+});
 
-// Початковий виклик функції для відображення всіх вакансій [cite: 162]
+// Запускаємо генерацію при завантаженні сторінки
 displayJobs(vacancies);

@@ -1,59 +1,187 @@
+:root {
+    --bg-color: #f0f2f5;
+    --text-color: #333;
+    --card-bg: #ffffff;
+    --header-bg: #2c3e50;
+    --nav-link: #ecf0f1;
+    --accent-color: #3498db; /* Основний синій */
+    --hover-color: #e67e22;  /* Колір при наведенні (помаранчевий) */
+    --footer-bg: #2c3e50;
+}
+
+.dark-theme {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --card-bg: #1e1e1e;
+    --header-bg: #000000;
+    --nav-link: #bb86fc;
+    --accent-color: #bb86fc; /* Фіолетовий */
+    --hover-color: #03dac6;  /* Колір при наведенні (бірюзовий) */
+    --footer-bg: #1a1a1a;
+}
+
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f4f7f6;
+    font-family: 'Segoe UI', Arial, sans-serif;
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 header {
-    text-align: center;
-    background: #2c3e50;
+    background-color: var(--header-bg);
     color: white;
-    padding: 20px;
-    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
 }
 
-.filter-section {
-    margin-top: 15px;
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
 }
 
-select, .btn {
-    padding: 10px;
-    border-radius: 5px;
+nav ul li { margin: 0 15px; }
+
+/* ЕФЕКТ НАВЕДЕННЯ ДЛЯ МЕНЮ */
+nav ul li a {
+    color: var(--nav-link);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--hover-color);
+}
+
+.theme-btn {
+    background-color: var(--accent-color);
+    color: white;
     border: none;
-    margin: 5px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: 0.3s ease;
 }
+
+.theme-btn:hover {
+    background-color: var(--hover-color);
+    transform: scale(1.05);
+}
+
+main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+section { margin-bottom: 40px; }
 
 .jobs-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    margin-top: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
 }
 
+/* ЕФЕКТ НАВЕДЕННЯ ДЛЯ КАРТОК */
 .job-card {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    transition: 0.3s;
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-top: 5px solid var(--accent-color);
+    transition: all 0.3s ease;
 }
 
-.job-card.applied {
-    border: 2px solid #27ae60;
-    background-color: #e8f8f5;
+.job-card:hover {
+    border-top-color: var(--hover-color);
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.profile-container {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--accent-color);
+    transition: border-color 0.3s ease;
+}
+
+.profile-container:hover .profile-pic {
+    border-color: var(--hover-color);
+}
+
+footer {
+    background-color: var(--footer-bg);
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 60px;
+}
+
+@media (max-width: 768px) {
+    nav ul { flex-direction: column; align-items: center; }
+    .profile-container { flex-direction: column; text-align: center; }
+}
+
+/* ДОДАНІ СТИЛІ ДЛЯ 2 ЛАБИ */
+.filter-section {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.theme-input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--accent-color);
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    font-size: 16px;
+    outline: none;
 }
 
 .apply-btn {
-    background-color: #3498db;
+    background-color: var(--accent-color);
     color: white;
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
+    font-weight: bold;
+    margin-top: 15px;
+    width: 100%;
+    transition: 0.3s;
+}
+
+.apply-btn:hover:not(:disabled) {
+    background-color: var(--hover-color);
 }
 
 .apply-btn:disabled {
-    background-color: #bdc3c7;
+    background-color: #27ae60; /* Зелений колір при успішній подачі */
     cursor: not-allowed;
+}
+
+.job-card.applied {
+    border-top-color: #27ae60;
 }
