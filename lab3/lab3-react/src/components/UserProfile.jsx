@@ -9,7 +9,7 @@ function UserProfile() {
     avatar: "https://st2.depositphotos.com/1594920/8612/i/450/depositphotos_86121648-stock-photo-close-up-of-mixed-breed.jpg"
   });
 
-  // Завантажуємо дані при першому рендері сторінки
+
   useEffect(() => {
     const savedData = localStorage.getItem('savedProfileReact');
     if (savedData) {
@@ -19,7 +19,6 @@ function UserProfile() {
 
   const toggleEdit = () => {
     if (isEditing) {
-      // Зберігаємо у localStorage при виході з режиму редагування
       localStorage.setItem('savedProfileReact', JSON.stringify(user));
     }
     setIsEditing(!isEditing);

@@ -24,7 +24,6 @@ function JobsView() {
   };
 
   const sortByDate = () => {
-    // У React ми обов'язково робимо копію масиву перед сортуванням
     const sorted = [...vacancies].sort((a, b) => new Date(b.date) - new Date(a.date));
     setVacancies(sorted);
     showToast('Вакансії відсортовано за датою (від нових)!');
@@ -34,7 +33,6 @@ function JobsView() {
     showToast(`Ви успішно подалися на: ${jobTitle}!`);
   };
 
-  // Фільтруємо вакансії перед відображенням
   const filteredVacancies = vacancies.filter(job => {
     const matchCategory = filters.category === 'all' || job.category === filters.category;
     const matchCity = filters.city === 'all' || job.city === filters.city;
@@ -52,7 +50,6 @@ function JobsView() {
           {filteredVacancies.length === 0 && (
             <p style={{ gridColumn: '1 / -1', textAlign: 'center' }}>На жаль, вакансій не знайдено.</p>
           )}
-          {/* У React ми використовуємо map замість v-for */}
           {filteredVacancies.map(job => (
             <JobCard key={job.title} job={job} onApply={handleApply} />
           ))}

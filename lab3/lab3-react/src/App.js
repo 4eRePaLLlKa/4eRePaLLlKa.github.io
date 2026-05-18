@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import './App.css'; // Підключаємо наші стилі
+import './App.css'; 
 
 import JobsView from './components/JobsView';
 import UserProfile from './components/UserProfile';
@@ -9,7 +9,6 @@ function App() {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [showScrollBtn, setShowScrollBtn] = useState(false);
 
-  // Перевірка теми та скролу при завантаженні
   useEffect(() => {
     const savedTheme = localStorage.getItem('themeReact');
     if (savedTheme === 'dark') {
@@ -37,11 +36,10 @@ function App() {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
-    // Router огортає весь додаток для роботи посилань
     <Router>
       <div id="app-wrapper">
         <header style={{ backgroundColor: 'var(--header-bg)', color: 'white', padding: '1.5rem', textAlign: 'center' }}>
-          <h1>JobFinder (React)</h1>
+          <h1>JobFinder</h1>
           <nav>
             <ul style={{ listStyle: 'none', padding: 0, display: 'flex', justifyContent: 'center', gap: '30px', marginBottom: '10px' }}>
               <li>
@@ -58,7 +56,6 @@ function App() {
         </header>
 
         <main style={{ maxWidth: '1200px', margin: '20px auto', padding: '20px', minHeight: '50vh' }}>
-          {/* ТУТ МІНЯЮТЬСЯ СТОРІНКИ */}
           <Routes>
             <Route path="/" element={<JobsView />} />
             <Route path="/profile" element={<UserProfile />} />
@@ -66,7 +63,7 @@ function App() {
         </main>
 
         <footer style={{ backgroundColor: 'var(--footer-bg)', color: 'white', textAlign: 'center', padding: '40px 20px', marginTop: '60px' }}>
-          <p>© 2026 JobFinder Platform — Твій шлях до успіху (React Версія)</p>
+          <p>© 2026 JobFinder Platform — Твій шлях до успіху</p>
         </footer>
 
         <button 

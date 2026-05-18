@@ -8,6 +8,11 @@ if (themeBtn) {
     if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark-theme');
 }
 
+
+
+// ФЕТЧ на 3 лабку 
+
+
 // --- 2. ДАНІ ВАКАНСІЙ ---
 const vacancies = [
     { title: "Frontend Developer", company: "WebTech Solutions", requirements: "HTML5, CSS3, React, Git", salaryStr: "65 000", salaryVal: 65000, category: "IT", city: "Київ" },
@@ -125,30 +130,21 @@ function handleScrollEffects() {
         scrollTopBtn.classList.remove('show');
     }
 
-    // 7б. Динамічне позиціонування над Футером
-    // footerRect.top — це відстань від верхньої межі вікна до початку футера.
-    // Якщо ця відстань менша за висоту вікна, значить футер вже з'явився знизу.
     if (footerRect.top < windowHeight) {
-        // Футер ВИДИМИЙ у вікні.
         const visibleFooterHeight = windowHeight - footerRect.top;
-        // Розраховуємо новий bottom: видима частина футера + зазор
         scrollTopBtn.style.bottom = (visibleFooterHeight + gapAboveFooter) + 'px';
     } else {
-        // Футер ще не з'явився (або занадто далеко). Стандартна позиція.
         scrollTopBtn.style.bottom = standardFixedBottom + 'px';
     }
 }
 
-// Слухаємо подію скролу
+
 window.addEventListener('scroll', handleScrollEffects);
 
-// Перший запуск (на випадок завантаження сторінки вже прокрученою)
 handleScrollEffects();
 
-// Плавний скрол нагору при кліку
 scrollTopBtn.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-// Запуск при завантаженні
 displayJobs(vacancies);
