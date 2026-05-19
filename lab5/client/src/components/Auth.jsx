@@ -15,7 +15,7 @@ function Auth({ onLoginSuccess, user }) {
     const endpoint = isLogin ? 'login' : 'register';
 
     try {
-      const response = await fetch(`http://localhost:5000/api/auth/${endpoint}`, {
+      const response = await fetch(`https://jobfinder-backend-os67.onrender.com/api/auth/${endpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -46,7 +46,7 @@ function Auth({ onLoginSuccess, user }) {
 
   return (
     <div className="job-card" style={{ maxWidth: '400px', margin: '50px auto' }}>
-      <h2 style={{ textAlign: 'center' }}>{isLogin ? 'Вхід' : 'Реєстрація'}</h2>
+      <h2 style={{ textAlign: 'center' }}>{isLogin ? 'Вхід (JWT)' : 'Реєстрація (JWT)'}</h2>
       <form onSubmit={handleAuth} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
         <input type="email" placeholder="Ваш Email" value={email} onChange={(e) => setEmail(e.target.value)} className="theme-input" required />
         <input type="password" placeholder="Пароль" value={password} onChange={(e) => setPassword(e.target.value)} className="theme-input" required />

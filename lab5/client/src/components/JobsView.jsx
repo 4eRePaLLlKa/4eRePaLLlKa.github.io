@@ -11,7 +11,7 @@ function JobsView({ user }) {
 
   // Отримання вакансій з нашого власного Node.js сервера
   useEffect(() => {
-    fetch('http://localhost:5000/api/vacancies')
+    fetch('https://jobfinder-backend-os67.onrender.com/api/vacancies')
       .then(res => res.json())
       .then(data => {
         setVacancies(data);
@@ -40,7 +40,7 @@ function JobsView({ user }) {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/applications', {
+      const response = await fetch('https://jobfinder-backend-os67.onrender.com/api/applications', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

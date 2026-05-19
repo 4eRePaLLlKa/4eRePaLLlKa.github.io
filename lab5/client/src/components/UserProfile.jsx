@@ -18,7 +18,7 @@ function UserProfile({ user, onLogout }) {
   useEffect(() => {
     if (user && user.email) {
       // 1. Завантажуємо текстові дані профілю з бази
-      fetch(`http://localhost:5000/api/profile?email=${user.email}`)
+      fetch(`https://jobfinder-backend-os67.onrender.com/api/profile?email=${user.email}`)
         .then(res => res.json())
         .then(data => {
           setProfileData(prev => ({
@@ -31,7 +31,7 @@ function UserProfile({ user, onLogout }) {
         .catch(err => console.error("Помилка завантаження профілю:", err));
 
       // 2. Завантажуємо історію заявок
-      fetch(`http://localhost:5000/api/applications?email=${user.email}`)
+      fetch(`https://jobfinder-backend-os67.onrender.com/api/applications?email=${user.email}`)
         .then(res => res.json())
         .then(data => setApplications(data))
         .catch(err => console.error("Помилка завантаження заявок:", err));
@@ -47,7 +47,7 @@ function UserProfile({ user, onLogout }) {
     if (isEditing) {
       // Коли тиснемо "Зберегти" — відправляємо оновлені дані на сервер в PostgreSQL
       try {
-        const response = await fetch('http://localhost:5000/api/profile', {
+        const response = await fetch('https://jobfinder-backend-os67.onrender.com/api/profile', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
